@@ -13,10 +13,6 @@ export function InfoSection({ onOpenAbout }: InfoSectionProps) {
   return (
     <View style={styles.sectionWrapper}>
       <ThemedView type="backgroundElement" style={styles.infoCard}>
-        <ThemedText type="smallBold" themeColor="textSecondary">
-          Pilsētas svētki 2026
-        </ThemedText>
-        <ThemedText type="subtitle">Rīgas Festivals</ThemedText>
         <ThemedText themeColor="textSecondary">
           12-14 jūlijs | Centra parks un vecpilsēta
         </ThemedText>

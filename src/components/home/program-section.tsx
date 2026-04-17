@@ -90,7 +90,7 @@ function EventCard({ time, title, stage, onPress, onOpenMap }: EventCardProps) {
               source={VietaIcon}
               style={styles.mapIcon}
               contentFit="contain"
-              tintColor={theme.accent}
+              tintColor={theme.darkRed}
             />
           </Pressable>
         </View>

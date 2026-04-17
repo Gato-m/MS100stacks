@@ -1,25 +1,27 @@
+import { Image } from "expo-image";
 import { router } from "expo-router";
+import { SymbolView } from "expo-symbols";
 import React from "react";
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { FESTIVAL_DATES, SECTION_LABELS } from "@/components/home/data";
+import VietaIcon from "@/assets/images/vieta.svg";
+import { ContentSectionBlock } from "@/components/content-section-block";
+import {
+  FESTIVAL_HEADER_HORIZONTAL_PADDING,
+  FESTIVAL_HEADER_MAX_WIDTH,
+  FestivalHeader,
+} from "@/components/festival-header";
+import { FESTIVAL_DATES } from "@/components/home/data";
 import { InfoSection } from "@/components/home/info-section";
 import { MapSection } from "@/components/home/map-section";
 import { ProgramSection } from "@/components/home/program-section";
 import { FestivalDate, MapCategory, Section } from "@/components/home/types";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
-import { MaxContentWidth, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 
-const SEGMENT_PADDING = Spacing.one;
-const SEGMENT_GAP = Spacing.one;
 const DATE_PILL_GAP = Spacing.two;
 
 export default function HomeScreen() {
@@ -29,8 +31,6 @@ export default function HomeScreen() {
   );
   const [activeMapCategory, setActiveMapCategory] =
     React.useState<MapCategory>("Pasākumi");
-  const [segmentWidth, setSegmentWidth] = React.useState(0);
-  const pillX = useSharedValue(0);
   const theme = useTheme();
 
   const openDetails = () => router.push("/event-details");
@@ -38,30 +38,51 @@ export default function HomeScreen() {
   const openMapSection = () => setActiveSection("map");
 
   const sections: Section[] = ["program", "map", "info"];
-  const selectedIndex = sections.indexOf(activeSection);
-
-  React.useEffect(() => {
-    if (!segmentWidth) {
-      return;
-    }
-
-    pillX.value = withSpring(selectedIndex * (segmentWidth + SEGMENT_GAP), {
-      damping: 18,
-      stiffness: 260,
-      mass: 0.5,
-    });
-  }, [pillX, segmentWidth, selectedIndex]);
-
-  const pillAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: pillX.value }],
-    };
-  });
 
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.safeArea} edges={["left", "right", "bottom"]}>
-        {activeSection !== "info" && (
+        <FestivalHeader />
+        <ContentSectionBlock>
+          {activeSection === "program" && (
+            <View style={styles.datePillRow}>
+              {FESTIVAL_DATES.map((date) => {
+                const isActiveDate = activeDate === date;
+
+                return (
+                  <Pressable
+                    key={date}
+                    onPress={() => setActiveDate(date)}
+                    style={styles.datePillPressable}
+                  >
+                    <ThemedView
+                      type={isActiveDate ? "accent" : "lightGray"}
+                      style={styles.datePill}
+                    >
+                      <ThemedText
+                        type="smallBold"
+                        style={styles.pillLabelLarge}
+                        themeColor={isActiveDate ? "white" : "textSecondary"}
+                      >
+                        {date}
+                      </ThemedText>
+                    </ThemedView>
+                  </Pressable>
+                );
+              })}
+            </View>
+          )}
+
+          {activeSection === "map" && (
+            <MapSection
+              activeMapCategory={activeMapCategory}
+              setActiveMapCategory={setActiveMapCategory}
+              showMap={false}
+            />
+          )}
+        </ContentSectionBlock>
+
+        {activeSection === "map" && (
           <ThemedView
             style={[
               styles.headerCard,
@@ -69,43 +90,11 @@ export default function HomeScreen() {
             ]}
             type="backgroundElement"
           >
-            <ThemedText type="smallBold" themeColor="textSecondary">
-              Pilsētas svētki 2026
-            </ThemedText>
-            <ThemedText type="subtitle">Rīgas Festivals</ThemedText>
-
-            {activeSection === "program" && (
-              <View style={styles.datePillRow}>
-                {FESTIVAL_DATES.map((date) => {
-                  const isActiveDate = activeDate === date;
-
-                  return (
-                    <Pressable
-                      key={date}
-                      onPress={() => setActiveDate(date)}
-                      style={styles.datePillPressable}
-                    >
-                      <ThemedView type={isActiveDate ? "accent" : "lightGray"} style={styles.datePill}>
-                        <ThemedText
-                          type="smallBold"
-                          style={styles.pillLabelLarge}
-                          themeColor={isActiveDate ? "white" : "textSecondary"}
-                        >
-                          {date}
-                        </ThemedText>
-                      </ThemedView>
-                    </Pressable>
-                  );
-                })}
-              </View>
-            )}
-
-            {activeSection === "map" && (
-              <MapSection
-                activeMapCategory={activeMapCategory}
-                setActiveMapCategory={setActiveMapCategory}
-              />
-            )}
+            <MapSection
+              activeMapCategory={activeMapCategory}
+              setActiveMapCategory={setActiveMapCategory}
+              showCategories={false}
+            />
           </ThemedView>
         )}
 
@@ -128,62 +117,61 @@ export default function HomeScreen() {
           </ScrollView>
         )}
 
-        <ThemedView
-          type="lightGray"
-          style={styles.segmentContainer}
-          onLayout={(event) => {
-            const totalWidth = event.nativeEvent.layout.width;
-            const available =
-              totalWidth -
-              SEGMENT_PADDING * 2 -
-              SEGMENT_GAP * (sections.length - 1);
-            setSegmentWidth(available / sections.length);
-          }}
-        >
-          {segmentWidth > 0 && (
-            <Animated.View
-              pointerEvents="none"
-              style={[
-                styles.segmentHighlight,
-                {
-                  width: segmentWidth,
-                  backgroundColor: theme.accent,
-                },
-                pillAnimatedStyle,
-              ]}
-            />
-          )}
+        <View style={styles.iconNavContainer}>
           {sections.map((section) => {
             const isActive = activeSection === section;
+            const tintColor = isActive ? theme.white : theme.textSecondary;
 
             return (
               <Pressable
                 key={section}
                 onPress={() => setActiveSection(section)}
-                style={styles.segmentPressable}
+                style={styles.iconNavPressable}
               >
                 <View
                   style={[
-                    styles.segmentButton,
+                    styles.iconNavItem,
                     {
                       backgroundColor: isActive
-                        ? "transparent"
+                        ? theme.accent
                         : theme.lightGray,
                     },
                   ]}
                 >
-                  <ThemedText
-                    type="smallBold"
-                    style={styles.pillLabelLarge}
-                    themeColor={isActive ? "white" : "textSecondary"}
-                  >
-                    {SECTION_LABELS[section]}
-                  </ThemedText>
+                  {section === "program" && (
+                    <SymbolView
+                      name={{
+                        ios: "calendar",
+                        android: "event",
+                        web: "event",
+                      }}
+                      size={32}
+                      tintColor={tintColor}
+                    />
+                  )}
+                  {section === "map" && (
+                    <Image
+                      source={VietaIcon}
+                      contentFit="contain"
+                      style={[styles.mapNavIcon, { tintColor }]}
+                    />
+                  )}
+                  {section === "info" && (
+                    <SymbolView
+                      name={{
+                        ios: "info.circle",
+                        android: "info",
+                        web: "info",
+                      }}
+                      size={32}
+                      tintColor={tintColor}
+                    />
+                  )}
                 </View>
               </Pressable>
             );
           })}
-        </ThemedView>
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -197,15 +185,17 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingTop: Spacing.four,
-    paddingHorizontal: Spacing.four,
+    paddingHorizontal: FESTIVAL_HEADER_HORIZONTAL_PADDING,
     gap: Spacing.three,
     paddingBottom: Spacing.four,
-    maxWidth: MaxContentWidth,
+    maxWidth: FESTIVAL_HEADER_MAX_WIDTH,
     width: "100%",
     alignSelf: "center",
   },
   contentScroll: {
     flex: 1,
+    marginTop: 0,
+    paddingTop: 0,
   },
   headerCard: {
     borderRadius: Spacing.four,
@@ -219,7 +209,7 @@ const styles = StyleSheet.create({
   datePillRow: {
     flexDirection: "row",
     gap: DATE_PILL_GAP,
-    marginTop: Spacing.two,
+    marginTop: 0,
   },
   datePillPressable: {
     flex: 1,
@@ -233,34 +223,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 20,
   },
-  segmentContainer: {
-    borderRadius: Spacing.five,
-    padding: SEGMENT_PADDING,
+  iconNavContainer: {
+    paddingVertical: Spacing.half,
+    paddingHorizontal: Spacing.five + 15,
     flexDirection: "row",
-    gap: SEGMENT_GAP,
+    gap: Spacing.one,
     position: "absolute",
-    left: Spacing.four,
-    right: Spacing.four,
-    bottom: Spacing.four,
+    left: FESTIVAL_HEADER_HORIZONTAL_PADDING,
+    right: FESTIVAL_HEADER_HORIZONTAL_PADDING,
+    bottom: Spacing.five,
     zIndex: 20,
   },
-  segmentHighlight: {
-    position: "absolute",
-    top: SEGMENT_PADDING,
-    left: SEGMENT_PADDING,
-    bottom: SEGMENT_PADDING,
-    borderRadius: Spacing.five,
-  },
-  segmentPressable: {
+  iconNavPressable: {
     flex: 1,
-    zIndex: 1,
-  },
-  segmentButton: {
-    borderRadius: Spacing.five,
     alignItems: "center",
-    paddingVertical: Spacing.two + Spacing.half,
+  },
+  iconNavItem: {
+    width: 55,
+    height: 55,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 22.5,
+  },
+  mapNavIcon: {
+    width: 32,
+    height: 32,
   },
   contentArea: {
+    paddingTop: 0,
     paddingBottom: Spacing.six + Spacing.five,
   },
 });

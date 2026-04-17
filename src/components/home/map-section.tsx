@@ -10,62 +10,83 @@ import { Spacing } from "@/constants/theme";
 type MapSectionProps = {
   activeMapCategory: MapCategory;
   setActiveMapCategory: (category: MapCategory) => void;
+  showCategories?: boolean;
+  showMap?: boolean;
 };
 
 export function MapSection({
   activeMapCategory,
   setActiveMapCategory,
+  showCategories = true,
+  showMap = true,
 }: MapSectionProps) {
+  const isCategoriesOnly = showCategories && !showMap;
+
   return (
-    <View style={styles.mapHeaderSection}>
-      <View style={styles.mapCategoryRow}>
-        {MAP_CATEGORIES.map((category) => {
-          const isActiveCategory = activeMapCategory === category;
+    <View
+      style={[
+        styles.mapHeaderSection,
+        isCategoriesOnly && styles.mapHeaderSectionCompact,
+      ]}
+    >
+      {showCategories && (
+        <View style={styles.mapCategoryRow}>
+          {MAP_CATEGORIES.map((category) => {
+            const isActiveCategory = activeMapCategory === category;
 
-          return (
-            <Pressable
-              key={category}
-              onPress={() => setActiveMapCategory(category)}
-              style={styles.mapCategoryPressable}
-            >
-              <ThemedView
-                type={isActiveCategory ? "accent" : "lightGray"}
-                style={styles.mapCategoryPill}
+            return (
+              <Pressable
+                key={category}
+                onPress={() => setActiveMapCategory(category)}
+                style={styles.mapCategoryPressable}
               >
-                <ThemedText
-                  type="smallBold"
-                  style={styles.categoryPillLabel}
-                  themeColor={isActiveCategory ? "white" : "textSecondary"}
+                <ThemedView
+                  type={isActiveCategory ? "accent" : "lightGray"}
+                  style={styles.mapCategoryPill}
                 >
-                  {category}
-                </ThemedText>
-              </ThemedView>
-            </Pressable>
-          );
-        })}
-      </View>
+                  <ThemedText
+                    type="smallBold"
+                    style={styles.categoryPillLabel}
+                    themeColor={isActiveCategory ? "white" : "textSecondary"}
+                  >
+                    {category}
+                  </ThemedText>
+                </ThemedView>
+              </Pressable>
+            );
+          })}
+        </View>
+      )}
 
-      <ThemedView type="backgroundSelected" style={styles.fakeMap}>
-        <ThemedText type="small">
-          Karte tiks pieslegta ar realiem koordinatu datiem
-        </ThemedText>
-      </ThemedView>
+      {showMap && (
+        <ThemedView type="backgroundSelected" style={styles.fakeMap}>
+          <ThemedText type="small">
+            Karte tiks pieslegta ar realiem koordinatu datiem
+          </ThemedText>
+        </ThemedView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   mapHeaderSection: {
-    marginTop: Spacing.two,
+    marginTop: 0,
     gap: Spacing.two,
     flex: 1,
+    marginBottom: Spacing.three,
+  },
+  mapHeaderSectionCompact: {
+    flex: 0,
+    marginBottom: 0,
   },
   mapCategoryRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: Spacing.two,
     rowGap: Spacing.two + 2,
-    marginTop: Spacing.two,
+    marginTop: 0,
+    marginBottom: Spacing.two,
   },
   mapCategoryPressable: {
     alignSelf: "flex-start",
@@ -85,11 +106,9 @@ const styles = StyleSheet.create({
   },
   fakeMap: {
     flex: 1,
-    minHeight: 220,
     borderRadius: Spacing.three,
     justifyContent: "center",
     alignItems: "center",
-    padding: Spacing.three,
-    marginTop: Spacing.two,
+    marginTop: -30,
   },
 });

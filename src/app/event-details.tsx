@@ -2,6 +2,12 @@ import { Stack } from "expo-router";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { ContentSectionBlock } from "@/components/content-section-block";
+import {
+  FESTIVAL_HEADER_HORIZONTAL_PADDING,
+  FESTIVAL_HEADER_MAX_WIDTH,
+  FestivalHeader,
+} from "@/components/festival-header";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Spacing } from "@/constants/theme";
@@ -10,6 +16,8 @@ export default function EventDetailsScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <Stack.Screen options={{ title: "Notikums" }} />
+      <FestivalHeader />
+      <ContentSectionBlock />
       <View style={styles.content}>
         <ThemedView type="backgroundElement" style={styles.card}>
           <ThemedText type="smallBold">Vakara koncerts</ThemedText>
@@ -30,11 +38,16 @@ export default function EventDetailsScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    padding: Spacing.four,
+    paddingTop: Spacing.four,
+    paddingBottom: Spacing.four,
+    paddingHorizontal: FESTIVAL_HEADER_HORIZONTAL_PADDING,
+    maxWidth: FESTIVAL_HEADER_MAX_WIDTH,
+    width: "100%",
+    alignSelf: "center",
+    gap: Spacing.three,
   },
   content: {
     flex: 1,
-    justifyContent: "center",
   },
   card: {
     borderRadius: Spacing.four,
