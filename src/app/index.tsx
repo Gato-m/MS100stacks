@@ -20,6 +20,7 @@ import { useTheme } from "@/hooks/use-theme";
 
 const SEGMENT_PADDING = Spacing.one;
 const SEGMENT_GAP = Spacing.one;
+const DATE_PILL_GAP = Spacing.two;
 
 export default function HomeScreen() {
   const [activeSection, setActiveSection] = React.useState<Section>("program");
@@ -34,6 +35,7 @@ export default function HomeScreen() {
 
   const openDetails = () => router.push("/event-details");
   const openAbout = () => router.push("/about");
+  const openMapSection = () => setActiveSection("map");
 
   const sections: Section[] = ["program", "map", "info"];
   const selectedIndex = sections.indexOf(activeSection);
@@ -83,12 +85,10 @@ export default function HomeScreen() {
                       onPress={() => setActiveDate(date)}
                       style={styles.datePillPressable}
                     >
-                      <ThemedView
-                        type={isActiveDate ? "accent" : "backgroundSelected"}
-                        style={styles.datePill}
-                      >
+                      <ThemedView type={isActiveDate ? "accent" : "lightGray"} style={styles.datePill}>
                         <ThemedText
                           type="smallBold"
+                          style={styles.pillLabelLarge}
                           themeColor={isActiveDate ? "white" : "textSecondary"}
                         >
                           {date}
@@ -119,6 +119,7 @@ export default function HomeScreen() {
               <ProgramSection
                 activeDate={activeDate}
                 onOpenDetails={openDetails}
+                onOpenMap={openMapSection}
               />
             )}
             {activeSection === "info" && (
@@ -128,7 +129,7 @@ export default function HomeScreen() {
         )}
 
         <ThemedView
-          type="backgroundElement"
+          type="lightGray"
           style={styles.segmentContainer}
           onLayout={(event) => {
             const totalWidth = event.nativeEvent.layout.width;
@@ -161,9 +162,19 @@ export default function HomeScreen() {
                 onPress={() => setActiveSection(section)}
                 style={styles.segmentPressable}
               >
-                <View style={styles.segmentButton}>
+                <View
+                  style={[
+                    styles.segmentButton,
+                    {
+                      backgroundColor: isActive
+                        ? "transparent"
+                        : theme.lightGray,
+                    },
+                  ]}
+                >
                   <ThemedText
                     type="smallBold"
+                    style={styles.pillLabelLarge}
                     themeColor={isActive ? "white" : "textSecondary"}
                   >
                     {SECTION_LABELS[section]}
@@ -207,17 +218,20 @@ const styles = StyleSheet.create({
   },
   datePillRow: {
     flexDirection: "row",
-    flexWrap: "wrap",
-    gap: Spacing.two,
+    gap: DATE_PILL_GAP,
     marginTop: Spacing.two,
   },
   datePillPressable: {
-    alignSelf: "flex-start",
+    flex: 1,
   },
   datePill: {
     borderRadius: Spacing.four,
-    paddingVertical: Spacing.one,
+    paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.three,
+  },
+  pillLabelLarge: {
+    fontSize: 16,
+    lineHeight: 20,
   },
   segmentContainer: {
     borderRadius: Spacing.five,
@@ -244,7 +258,7 @@ const styles = StyleSheet.create({
   segmentButton: {
     borderRadius: Spacing.five,
     alignItems: "center",
-    paddingVertical: Spacing.two,
+    paddingVertical: Spacing.two + Spacing.half,
   },
   contentArea: {
     paddingBottom: Spacing.six + Spacing.five,

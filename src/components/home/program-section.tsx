@@ -1,15 +1,24 @@
+import { Image } from "expo-image";
 import React from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  View,
+  type GestureResponderEvent,
+} from "react-native";
 
+import VietaIcon from "@/assets/images/vieta.svg";
 import { PROGRAM_EVENTS } from "@/components/home/data";
 import { FestivalDate } from "@/components/home/types";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { Spacing } from "@/constants/theme";
+import { useTheme } from "@/hooks/use-theme";
 
 type ProgramSectionProps = {
   activeDate: FestivalDate;
   onOpenDetails: () => void;
+  onOpenMap: () => void;
 };
 
 type EventCardProps = {
@@ -17,11 +26,13 @@ type EventCardProps = {
   title: string;
   stage: string;
   onPress: () => void;
+  onOpenMap: () => void;
 };
 
 export function ProgramSection({
   activeDate,
   onOpenDetails,
+  onOpenMap,
 }: ProgramSectionProps) {
   const dayEvents = PROGRAM_EVENTS[activeDate];
 
@@ -34,27 +45,55 @@ export function ProgramSection({
           title={event.title}
           stage={event.stage}
           onPress={onOpenDetails}
+          onOpenMap={onOpenMap}
         />
       ))}
     </View>
   );
 }
 
-function EventCard({ time, title, stage, onPress }: EventCardProps) {
+function EventCard({ time, title, stage, onPress, onOpenMap }: EventCardProps) {
+  const theme = useTheme();
+
+  const handleMapPress = (event: GestureResponderEvent) => {
+    event.stopPropagation();
+    onOpenMap();
+  };
+
   return (
     <Pressable onPress={onPress}>
       <ThemedView type="backgroundElement" style={styles.eventCard}>
-        <View style={styles.eventMetaRow}>
-          <ThemedView type="accent" style={styles.eventTimePill}>
-            <ThemedText type="smallBold" themeColor="white">
-              {time}
-            </ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.eventStageText} themeColor="textSecondary">
-            {stage}
-          </ThemedText>
+        <View style={styles.eventCardRow}>
+          <View style={styles.eventMainColumn}>
+            <View style={styles.eventMetaRow}>
+              <ThemedView type="accent" style={styles.eventTimePill}>
+                <ThemedText type="smallBold" themeColor="white">
+                  {time}
+                </ThemedText>
+              </ThemedView>
+              <ThemedText
+                style={styles.eventStageText}
+                themeColor="textSecondary"
+              >
+                {stage}
+              </ThemedText>
+            </View>
+            <ThemedText style={styles.eventTitle}>{title}</ThemedText>
+          </View>
+
+          <Pressable
+            onPress={handleMapPress}
+            hitSlop={10}
+            style={styles.mapIconButton}
+          >
+            <Image
+              source={VietaIcon}
+              style={styles.mapIcon}
+              contentFit="contain"
+              tintColor={theme.accent}
+            />
+          </Pressable>
         </View>
-        <ThemedText style={styles.eventTitle}>{title}</ThemedText>
       </ThemedView>
     </Pressable>
   );
@@ -68,6 +107,15 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.three,
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
+    marginBottom: Spacing.one,
+  },
+  eventCardRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: Spacing.two,
+  },
+  eventMainColumn: {
+    flex: 1,
     gap: Spacing.one,
   },
   eventMetaRow: {
@@ -84,9 +132,17 @@ const styles = StyleSheet.create({
   },
   eventStageText: {
     flexShrink: 1,
-    textAlign: "right",
+    textAlign: "left",
     fontSize: 14,
     lineHeight: 18,
+  },
+  mapIconButton: {
+    marginTop: Spacing.half,
+    padding: Spacing.half,
+  },
+  mapIcon: {
+    width: 36,
+    height: 36,
   },
   eventTitle: {
     fontSize: 22,

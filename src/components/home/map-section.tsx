@@ -29,11 +29,12 @@ export function MapSection({
               style={styles.mapCategoryPressable}
             >
               <ThemedView
-                type={isActiveCategory ? "accent" : "backgroundSelected"}
+                type={isActiveCategory ? "accent" : "lightGray"}
                 style={styles.mapCategoryPill}
               >
                 <ThemedText
                   type="smallBold"
+                  style={styles.categoryPillLabel}
                   themeColor={isActiveCategory ? "white" : "textSecondary"}
                 >
                   {category}
@@ -68,14 +69,19 @@ const styles = StyleSheet.create({
   },
   mapCategoryPressable: {
     alignSelf: "flex-start",
+    zIndex: 1,
   },
   mapCategoryPill: {
     borderRadius: Spacing.four,
-    paddingVertical: Spacing.one,
+    paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.three,
     flexDirection: "row",
     alignItems: "center",
     gap: Spacing.one,
+  },
+  categoryPillLabel: {
+    fontSize: 16,
+    lineHeight: 20,
   },
   fakeMap: {
     flex: 1,
