@@ -8,110 +8,26 @@ import Animated, {
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { FESTIVAL_DATES, SECTION_LABELS } from "@/components/home/data";
+import { InfoSection } from "@/components/home/info-section";
+import { MapSection } from "@/components/home/map-section";
+import { ProgramSection } from "@/components/home/program-section";
+import { FestivalDate, MapCategory, Section } from "@/components/home/types";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { MaxContentWidth, Spacing } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-theme";
 
-type Section = "program" | "map" | "info";
-type FestivalDate = "12. jūlijs" | "13. jūlijs" | "14. jūlijs";
-type MapCategory =
-  | "Pasākumi"
-  | "Koncerti"
-  | "Izstādes"
-  | "Bērniem"
-  | "Sports"
-  | "Kafejnīcas"
-  | "Satiksmes ierobežojumi";
-
-const SECTION_LABELS: Record<Section, string> = {
-  program: "Programma",
-  map: "Karte",
-  info: "Info",
-};
-
 const SEGMENT_PADDING = Spacing.one;
 const SEGMENT_GAP = Spacing.one;
-const FESTIVAL_DATES: FestivalDate[] = [
-  "12. jūlijs",
-  "13. jūlijs",
-  "14. jūlijs",
-];
-const MAP_CATEGORIES: MapCategory[] = [
-  "Pasākumi",
-  "Koncerti",
-  "Izstādes",
-  "Bērniem",
-  "Sports",
-  "Kafejnīcas",
-  "Satiksmes ierobežojumi",
-];
-
-const PROGRAM_EVENTS: Record<
-  FestivalDate,
-  Array<{ time: string; title: string; stage: string }>
-> = {
-  "12. jūlijs": [
-    {
-      time: "13:00",
-      title: "Atklāšanas gājiens",
-      stage: "Brīvības laukums",
-    },
-    {
-      time: "16:00",
-      title: "Jauno grupu skatuve",
-      stage: "Mazo skatuvju parks",
-    },
-    {
-      time: "20:30",
-      title: "Vakara koncerts",
-      stage: "Lielā skatuve",
-    },
-  ],
-  "13. jūlijs": [
-    {
-      time: "12:30",
-      title: "Ģimeņu radošās darbnīcas",
-      stage: "Bērnu zona",
-    },
-    {
-      time: "17:00",
-      title: "Ielu teātra uzvedums",
-      stage: "Vecpilsētas ielas",
-    },
-    {
-      time: "21:00",
-      title: "DJ nakts sets",
-      stage: "Elektronikas skatuve",
-    },
-  ],
-  "14. jūlijs": [
-    {
-      time: "14:00",
-      title: "Koru sadziedāšanās",
-      stage: "Parka estrāde",
-    },
-    {
-      time: "18:30",
-      title: "Pilsētas stāstu performance",
-      stage: "Mazais amfiteātris",
-    },
-    {
-      time: "22:00",
-      title: "Noslēguma gaismu šovs",
-      stage: "Centra parks",
-    },
-  ],
-};
 
 export default function HomeScreen() {
   const [activeSection, setActiveSection] = React.useState<Section>("program");
   const [activeDate, setActiveDate] = React.useState<FestivalDate>(
     FESTIVAL_DATES[0],
   );
-  const [activeMapCategory, setActiveMapCategory] = React.useState<MapCategory>(
-    MAP_CATEGORIES[0],
-  );
+  const [activeMapCategory, setActiveMapCategory] =
+    React.useState<MapCategory>("Pasākumi");
   const [segmentWidth, setSegmentWidth] = React.useState(0);
   const pillX = useSharedValue(0);
   const theme = useTheme();
@@ -185,43 +101,10 @@ export default function HomeScreen() {
             )}
 
             {activeSection === "map" && (
-              <View style={styles.mapHeaderSection}>
-                <View style={styles.mapCategoryRow}>
-                  {MAP_CATEGORIES.map((category) => {
-                    const isActiveCategory = activeMapCategory === category;
-
-                    return (
-                      <Pressable
-                        key={category}
-                        onPress={() => setActiveMapCategory(category)}
-                        style={styles.mapCategoryPressable}
-                      >
-                        <ThemedView
-                          type={
-                            isActiveCategory ? "accent" : "backgroundSelected"
-                          }
-                          style={styles.mapCategoryPill}
-                        >
-                          <ThemedText
-                            type="smallBold"
-                            themeColor={
-                              isActiveCategory ? "white" : "textSecondary"
-                            }
-                          >
-                            {category}
-                          </ThemedText>
-                        </ThemedView>
-                      </Pressable>
-                    );
-                  })}
-                </View>
-
-                <ThemedView type="backgroundSelected" style={styles.fakeMap}>
-                  <ThemedText type="small">
-                    Karte tiks pieslegta ar realiem koordinatu datiem
-                  </ThemedText>
-                </ThemedView>
-              </View>
+              <MapSection
+                activeMapCategory={activeMapCategory}
+                setActiveMapCategory={setActiveMapCategory}
+              />
             )}
           </ThemedView>
         )}
@@ -295,93 +178,6 @@ export default function HomeScreen() {
   );
 }
 
-function ProgramSection({
-  activeDate,
-  onOpenDetails,
-}: {
-  activeDate: FestivalDate;
-  onOpenDetails: () => void;
-}) {
-  const dayEvents = PROGRAM_EVENTS[activeDate];
-
-  return (
-    <View style={styles.programList}>
-      {dayEvents.map((event) => (
-        <EventCard
-          key={`${activeDate}-${event.time}-${event.title}`}
-          time={event.time}
-          title={event.title}
-          stage={event.stage}
-          onPress={onOpenDetails}
-        />
-      ))}
-    </View>
-  );
-}
-
-function MapSection() {
-  return null;
-}
-
-function InfoSection({ onOpenAbout }: { onOpenAbout: () => void }) {
-  return (
-    <View style={styles.sectionWrapper}>
-      <ThemedView type="backgroundElement" style={styles.infoCard}>
-        <ThemedText type="smallBold" themeColor="textSecondary">
-          Pilsētas svētki 2026
-        </ThemedText>
-        <ThemedText type="subtitle">Rīgas Festivals</ThemedText>
-        <ThemedText themeColor="textSecondary">
-          12-14 jūlijs | Centra parks un vecpilsēta
-        </ThemedText>
-        <ThemedText style={styles.infoText} type="smallBold">
-          Noderiga informacija
-        </ThemedText>
-        <ThemedText themeColor="textSecondary">
-          Darba laiks: 12:00-23:30
-        </ThemedText>
-        <ThemedText themeColor="textSecondary">
-          Atbalsts: +371 2000 0000
-        </ThemedText>
-        <ThemedText themeColor="textSecondary">Ieeja: bezmaksas</ThemedText>
-        <Pressable onPress={onOpenAbout} style={styles.infoAction}>
-          <ThemedText type="linkPrimary">Par pasakumu</ThemedText>
-        </Pressable>
-      </ThemedView>
-    </View>
-  );
-}
-
-function EventCard({
-  time,
-  title,
-  stage,
-  onPress,
-}: {
-  time: string;
-  title: string;
-  stage: string;
-  onPress: () => void;
-}) {
-  return (
-    <Pressable onPress={onPress}>
-      <ThemedView type="backgroundElement" style={styles.eventCard}>
-        <View style={styles.eventMetaRow}>
-          <ThemedView type="accent" style={styles.eventTimePill}>
-            <ThemedText type="smallBold" themeColor="white">
-              {time}
-            </ThemedText>
-          </ThemedView>
-          <ThemedText style={styles.eventStageText} themeColor="textSecondary">
-            {stage}
-          </ThemedText>
-        </View>
-        <ThemedText style={styles.eventTitle}>{title}</ThemedText>
-      </ThemedView>
-    </Pressable>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -423,28 +219,6 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.one,
     paddingHorizontal: Spacing.three,
   },
-  mapCategoryRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: Spacing.two,
-    marginTop: Spacing.two,
-  },
-  mapCategoryPressable: {
-    alignSelf: "flex-start",
-  },
-  mapCategoryPill: {
-    borderRadius: Spacing.four,
-    paddingVertical: Spacing.one,
-    paddingHorizontal: Spacing.three,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Spacing.one,
-  },
-  mapHeaderSection: {
-    marginTop: Spacing.two,
-    gap: Spacing.two,
-    flex: 1,
-  },
   segmentContainer: {
     borderRadius: Spacing.five,
     padding: SEGMENT_PADDING,
@@ -474,73 +248,5 @@ const styles = StyleSheet.create({
   },
   contentArea: {
     paddingBottom: Spacing.six + Spacing.five,
-  },
-  sectionWrapper: {
-    gap: Spacing.three,
-  },
-  programList: {
-    gap: 0,
-  },
-  rowHeader: {
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  eventCard: {
-    borderRadius: Spacing.three,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    gap: Spacing.one,
-  },
-  eventMetaRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    gap: Spacing.two,
-  },
-  eventTimePill: {
-    borderRadius: Spacing.four,
-    paddingVertical: Spacing.one,
-    paddingHorizontal: Spacing.three,
-    marginRight: Spacing.two,
-  },
-  eventStageText: {
-    flexShrink: 1,
-    textAlign: "right",
-    fontSize: 14,
-    lineHeight: 18,
-  },
-  eventTitle: {
-    fontSize: 22,
-    lineHeight: 28,
-    fontWeight: 600,
-  },
-  mapCard: {
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-    gap: Spacing.two,
-    marginBottom: Spacing.two,
-  },
-  fakeMap: {
-    flex: 1,
-    minHeight: 220,
-    borderRadius: Spacing.three,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: Spacing.three,
-    marginTop: Spacing.two,
-  },
-  infoCard: {
-    borderRadius: Spacing.four,
-    padding: Spacing.three,
-    gap: Spacing.one,
-  },
-  infoAction: {
-    marginTop: Spacing.two,
-  },
-  infoText: {
-    marginTop: Spacing.three,
   },
 });
