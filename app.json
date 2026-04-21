@@ -8,7 +8,7 @@
     "scheme": "m100stacks",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "lv.stars.m100stacks"
     },
     "android": {
       "adaptiveIcon": {
@@ -40,6 +40,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6a5557f3-d1af-43a2-a43c-801b710f2397"
+      }
+    },
+    "owner": "gato-m"
   }
 }
