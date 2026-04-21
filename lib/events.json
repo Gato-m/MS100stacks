@@ -1,0 +1,328 @@
+{
+  "events": [
+    {
+      "eventId": "evt-004",
+      "date": "2025-06-06",
+      "time": "10:00",
+      "title": "Pilsētas svētku atklāšana",
+      "place": "Madona",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Atklāšanā piedalās pašvaldības pārstāvji un svētku organizatori.",
+        "Skatuvi kuplinās vietējie amatiermākslas kolektīvi.",
+        "Pasākumu vadīs pieredzējuši konferansjē."
+      ]
+    },
+    {
+      "eventId": "evt-005",
+      "date": "2025-06-06",
+      "time": "10:30",
+      "title": "Izrāde bērniem “Kikeriģū, eju meklēt!”",
+      "place": "Madonas novada bibliotēka",
+      "lat": 56.85281470183181,
+      "long": 26.210010098122538,
+      "addInfo": [
+        "Izrādē piedalās profesionāli bērnu teātra aktieri.",
+        "Mazajiem skatītājiem būs iespēja iesaistīties interaktīvās aktivitātēs.",
+        "Pēc izrādes bērni varēs tikties ar tēliem un nofotografēties."
+      ]
+    },
+    {
+      "eventId": "evt-006",
+      "date": "2025-06-06",
+      "time": "11:00",
+      "title": "Atvērta pastāvīgā ekspozīcija un izstādes",
+      "place": "Madonas novadpētniecības un mākslas muzejs",
+      "lat": 56.852230804649125,
+      "long": 26.211500299969433,
+      "addInfo": [
+        "Ekspozīcijā apskatāmi unikāli Madonas novada vēstures materiāli.",
+        "Apmeklētāji varēs iepazīt jaunākās muzeja izstādes.",
+        "Muzeja speciālisti būs pieejami konsultācijām un stāstījumiem."
+      ]
+    },
+    {
+      "eventId": "evt-007",
+      "date": "2025-06-06",
+      "time": "17:00",
+      "title": "Madonas Topbumba 2025",
+      "place": "Priežu kalna basketbola laukumi",
+      "lat": 56.85819856068179,
+      "long": 26.219734599920635,
+      "addInfo": [
+        "Turnīrā piedalās komandas no visas Latvijas.",
+        "Skatītāji varēs baudīt dinamiskas un aizraujošas spēles.",
+        "Pasākumu vadīs profesionāls sporta komentētājs."
+      ]
+    },
+    {
+      "eventId": "evt-008",
+      "date": "2025-06-06",
+      "time": "18:00",
+      "title": "Filma “Dziesmu avoti. 1866” – kinoseanss",
+      "place": "Kinoteātris “Vidzeme”",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Atkārtots seanss skatītāju lielās intereses dēļ.",
+        "Pirms filmas iespējama tikšanās ar veidotājiem.",
+        "Skatītāji aicināti ierasties savlaicīgi, jo vietu skaits ir ierobežots."
+      ]
+    },
+    {
+      "eventId": "evt-009",
+      "date": "2025-06-06",
+      "time": "13:00",
+      "title": "“Laimas dārzā dejot nāc!” – bērnu un jauniešu tautas deju koncerts",
+      "place": "Madonas pilsētas estrāde",
+      "lat": 56.848437550468546,
+      "long": 26.208105199969264,
+      "addInfo": [
+        "Koncertā piedalās kolektīvi no Madonas un Varakļānu novadiem.",
+        "Programmā iekļautas gan tradicionālās, gan mūsdienu tautas dejas.",
+        "Mākslinieciskā vadība nodrošina augstu priekšnesumu kvalitāti."
+      ]
+    },
+
+    {
+      "eventId": "evt-010",
+      "date": "2025-06-07",
+      "time": "10:00",
+      "title": "Latvijas čempionāts svaru stieņa spiešanā",
+      "place": "Priežu kalna basketbola laukumi",
+      "lat": 56.85819856068179,
+      "long": 26.219734599920635,
+      "addInfo": [
+        "Sacensībās piedalās spēcīgākie sportisti no visas Latvijas.",
+        "Skatītāji varēs vērot dažādas svaru kategorijas un disciplīnas.",
+        "Uzvarētāji saņems balvas un piemiņas medaļas."
+      ]
+    },
+
+    {
+      "eventId": "evt-011",
+      "date": "2025-06-07",
+      "time": "09:00",
+      "title": "Svētku tirdziņš",
+      "place": "Valmieras iela",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Tirdziņā piedalās vietējie amatnieki un mājražotāji.",
+        "Apmeklētāji varēs iegādāties unikālus rokdarbus un gardumus.",
+        "Būs pieejamas degustācijas un radošās darbnīcas."
+      ]
+    },
+
+    {
+      "eventId": "evt-012",
+      "date": "2025-06-07",
+      "time": "10:00",
+      "title": "Atrakcijas, radošās darbnīcas un aktivitātes ģimenēm",
+      "place": "Priežu kalns",
+      "lat": 56.85819856068179,
+      "long": 26.219734599920635,
+      "addInfo": [
+        "Bērniem pieejamas dažādas atrakcijas un spēles.",
+        "Radošajās darbnīcās varēs izgatavot suvenīrus.",
+        "Pasākumu vadīs pieredzējuši animatori."
+      ]
+    },
+
+    {
+      "eventId": "evt-013",
+      "date": "2025-06-07",
+      "time": "10:00–02:00",
+      "title": "Street Food festivāls",
+      "place": "Saieta laukums",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Festivālā piedalās ēdinātāji no visas Latvijas.",
+        "Apmeklētāji varēs baudīt dažādu valstu virtuves ēdienus.",
+        "Vakarā paredzēta muzikālā programma."
+      ]
+    },
+
+    {
+      "eventId": "evt-014",
+      "date": "2025-06-07",
+      "time": "10:00",
+      "title": "Madonas amatiermākslas kolektīvu koncerts",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Koncertā piedalās vietējie kori, deju kolektīvi un ansambļi.",
+        "Programmā iekļauti gan jauni, gan tradicionāli priekšnesumi.",
+        "Pasākums piemērots visai ģimenei."
+      ]
+    },
+
+    {
+      "eventId": "evt-015",
+      "date": "2025-06-07",
+      "time": "12:00",
+      "title": "Cēsu teātra izrāde “Mucenieks un Muceniece”",
+      "place": "Saieta laukums – Street Food skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Izrādē piedalās profesionāli aktieri no Cēsu teātra.",
+        "Skatītāji varēs baudīt humoru un spilgtus tēlus.",
+        "Pēc izrādes paredzēta tikšanās ar aktieriem."
+      ]
+    },
+
+    {
+      "eventId": "evt-016",
+      "date": "2025-06-07",
+      "time": "14:00",
+      "title": "Grupa “Carousel”",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Koncertā skanēs populārākās grupas dziesmas.",
+        "Skatuves noformējums radīs īpašu atmosfēru.",
+        "Piedalās viesmākslinieki no Latvijas mūzikas industrijas."
+      ]
+    },
+
+    {
+      "eventId": "evt-017",
+      "date": "2025-06-07",
+      "time": "15:00",
+      "title": "Grupa “Rīga Reggae”",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Koncertā skanēs regeja ritmi un pozitīva enerģija.",
+        "Grupa uzstāsies ar īpaši sagatavotu svētku programmu.",
+        "Piedalās viesmākslinieki un DJ."
+      ]
+    },
+
+    {
+      "eventId": "evt-018",
+      "date": "2025-06-07",
+      "time": "16:30",
+      "title": "Rīgas cirka klaunādes izrāde “Pacamano”",
+      "place": "Saieta laukums",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Izrādē piedalās profesionāli cirka mākslinieki.",
+        "Programmā iekļauti gan komiski, gan akrobātiski elementi.",
+        "Pasākums piemērots bērniem un pieaugušajiem."
+      ]
+    },
+
+    {
+      "eventId": "evt-019",
+      "date": "2025-06-07",
+      "time": "17:30",
+      "title": "Rīgas Pantomīma",
+      "place": "Madonas novadpētniecības un mākslas muzejs",
+      "lat": 56.852230804649125,
+      "long": 26.211500299969433,
+      "addInfo": [
+        "Pantomīmas mākslinieki izpildīs īpaši sagatavotu programmu.",
+        "Skatītāji varēs baudīt vizuālu un emocionālu priekšnesumu.",
+        "Pēc izrādes paredzēta īsa saruna ar māksliniekiem."
+      ]
+    },
+
+    {
+      "eventId": "evt-020",
+      "date": "2025-06-07",
+      "time": "16:00",
+      "title": "Pastāvīgā ekspozīcija un plenēra darbu izstādes atklāšana",
+      "place": "Madonas novadpētniecības un mākslas muzejs",
+      "lat": 56.852230804649125,
+      "long": 26.211500299969433,
+      "addInfo": [
+        "Izstādē apskatāmi plenēra laikā tapušie darbi.",
+        "Apmeklētāji varēs tikties ar māksliniekiem.",
+        "Muzeja speciālisti sniegs papildus informāciju par darbiem."
+      ]
+    },
+
+    {
+      "eventId": "evt-021",
+      "date": "2025-06-07",
+      "time": "18:00",
+      "title": "Futbola spēle: FC Madona/BJSS – Gulbenes BJSS",
+      "place": "Madonas pilsētas stadions",
+      "lat": 56.844698352241345,
+      "long": 26.227150677880957,
+      "addInfo": [
+        "Spēlē piedalās Latvijas jaunie futbolisti.",
+        "Skatītāji varēs baudīt dinamisku un aizraujošu spēli.",
+        "Uzvarētāji saņems balvas no organizatoriem."
+      ]
+    },
+
+    {
+      "eventId": "evt-022",
+      "date": "2025-06-07",
+      "time": "19:00",
+      "title": "Emilija ar grupu",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Koncertā skanēs populāras dziesmas un jauni skaņdarbi.",
+        "Skatuves vizuālais noformējums radīs īpašu atmosfēru.",
+        "Piedalās viesmākslinieki no Latvijas mūzikas skatuves."
+      ]
+    },
+
+    {
+      "eventId": "evt-023",
+      "date": "2025-06-07",
+      "time": "20:00",
+      "title": "Dagamba",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Dagamba uzstāsies ar īpašu svētku programmu.",
+        "Koncertā skanēs gan klasikas interpretācijas, gan jauni skaņdarbi.",
+        "Skatuves gaismu šovs papildinās muzikālo pieredzi."
+      ]
+    },
+
+    {
+      "eventId": "evt-024",
+      "date": "2025-06-07",
+      "time": "21:40",
+      "title": "Fiņķis",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "Fiņķis izpildīs savus populārākos skaņdarbus.",
+        "Koncertā piedalīsies viesmākslinieki un DJ.",
+        "Skatuves atmosfēra radīs enerģisku noskaņu."
+      ]
+    },
+
+    {
+      "eventId": "evt-025",
+      "date": "2025-06-07",
+      "time": "22:00",
+      "title": "A-Europa",
+      "place": "Saieta laukums – Lielā skatuve",
+      "lat": 56.85465469818972,
+      "long": 26.22201211346372,
+      "addInfo": [
+        "A-Europa izpildīs savus lielākos hitus.",
+        "Koncertā piedalīsies viesmākslinieki.",
+        "Skatuves gaismu šovs papildinās priekšnesumu."
+      ]
+    }
+  ]
+}
