@@ -1,11 +1,10 @@
-import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { Pill } from "@/components/Pill";
+import { SectionCard } from "@/components/SectionCard";
+import { SectionContainer } from "@/components/SectionContainer";
+import { ThemedText } from "@/components/ThemedText";
+import { useTheme } from "@/design/ThemeProvider";
+import React, { useMemo, useState } from "react";
+import { ScrollView, View } from "react-native";
 import eventsData from "../../../lib/events.json";
 
 type EventItem = {
@@ -17,113 +16,112 @@ type EventItem = {
   addInfo: string[];
 };
 
+const MONTHS_LV = [
+  "janvāris",
+  "februāris",
+  "marts",
+  "aprīlis",
+  "maijs",
+  "jūnijs",
+  "jūlijs",
+  "augusts",
+  "septembris",
+  "oktobris",
+  "novembris",
+  "decembris",
+] as const;
+
+function formatDateLatvian(dateString: string) {
+  const [year, month, day] = dateString.split("-");
+  const parsedYear = Number(year);
+  const parsedMonth = Number(month);
+  const parsedDay = Number(day);
+
+  if (
+    !Number.isInteger(parsedYear) ||
+    !Number.isInteger(parsedMonth) ||
+    !Number.isInteger(parsedDay) ||
+    parsedMonth < 1 ||
+    parsedMonth > 12
+  ) {
+    return dateString;
+  }
+
+  return `${parsedDay}. ${MONTHS_LV[parsedMonth - 1]}`;
+}
+
 export default function ProgrammaScreen() {
-  const { width } = useWindowDimensions();
-  const isTablet = width >= 768;
+  const { theme } = useTheme();
   const events = (eventsData as { events: EventItem[] }).events;
+  const availableDates = useMemo(
+    () => [...new Set(events.map((event: EventItem) => event.date))],
+    [events],
+  );
+  const [selectedDate, setSelectedDate] = useState(availableDates[0] ?? "");
+  const filteredEvents = useMemo(
+    () => events.filter((event: EventItem) => event.date === selectedDate),
+    [events, selectedDate],
+  );
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={[styles.content, isTablet && styles.contentTablet]}>
-        <Text style={styles.eyebrow}>Programma</Text>
-        <Text style={styles.title}>Programma</Text>
-        <Text style={styles.description}>
+    <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+      <SectionContainer fromScreenTop>
+        <ThemedText variant="eyebrow" color="textSecondary">
+          Programma
+        </ThemedText>
+        <ThemedText variant="bigTitle">Programma</ThemedText>
+        <ThemedText variant="body" color="textSecondary">
           Šeit vari lasīt informāciju par pasākuma norises vietām un pasākuma
           programmu .
-        </Text>
-
-        <View style={styles.sectionsContainer}>
-          {events.map((event: EventItem) => (
-            <View key={event.eventId} style={styles.sectionCard}>
-              <Text style={styles.sectionTitle}>{event.title}</Text>
-              <Text style={styles.paragraph}>
-                {event.date} • {event.time}
-              </Text>
-              <Text style={styles.paragraph}>{event.place}</Text>
-              {event.addInfo.map((info: string, index: number) => (
-                <Text
-                  key={`${event.eventId}-${index}`}
-                  style={styles.paragraph}
-                >
-                  {info}
-                </Text>
-              ))}
-            </View>
+        </ThemedText>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            gap: theme.spacing.two,
+          }}
+        >
+          {availableDates.map((date) => (
+            <Pill
+              key={date}
+              variant="date"
+              onPress={() => setSelectedDate(date)}
+              selected={selectedDate === date}
+            >
+              {formatDateLatvian(date)}
+            </Pill>
           ))}
         </View>
-      </View>
+      </SectionContainer>
+
+      <SectionContainer>
+        {filteredEvents.map((event: EventItem) => (
+          <SectionCard key={event.eventId}>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: theme.spacing.two,
+              }}
+            >
+              <Pill variant="time">{event.time}</Pill>
+            </View>
+            <ThemedText variant="body" color="textSecondary">
+              {event.place}
+            </ThemedText>
+            <ThemedText variant="subTitle">{event.title}</ThemedText>
+            {event.addInfo.map((info: string, index: number) => (
+              <ThemedText
+                key={`${event.eventId}-${index}`}
+                variant="body"
+                color="textSecondary"
+              >
+                {info}
+              </ThemedText>
+            ))}
+          </SectionCard>
+        ))}
+      </SectionContainer>
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F0FDF4",
-  },
-  contentContainer: {
-    paddingBottom: "5%",
-  },
-  content: {
-    paddingHorizontal: 24,
-    paddingTop: 72,
-    gap: 12,
-  },
-  contentTablet: {
-    width: "90%",
-    maxWidth: 1200,
-    alignSelf: "center",
-    paddingHorizontal: "10%",
-  },
-  eyebrow: {
-    fontSize: 14,
-    fontWeight: "700",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    color: "#939393",
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: "800",
-    color: "#111827",
-  },
-  description: {
-    fontSize: 17,
-    lineHeight: 26,
-    color: "#374151",
-    maxWidth: 520,
-  },
-  sectionsContainer: {
-    marginTop: 8,
-    gap: 14,
-  },
-  sectionCard: {
-    backgroundColor: "#ffffff00",
-    borderRadius: 14,
-    paddingHorizontal: 0,
-    paddingVertical: 12,
-    borderWidth: 1,
-    borderColor: "rgba(0,0,0,0.1)",
-    gap: 8,
-  },
-  sectionTitle: {
-    fontSize: 17,
-    fontWeight: "700",
-    lineHeight: 22,
-    color: "#111827",
-  },
-  sectionBlock: {
-    gap: 8,
-    marginBottom: 10,
-  },
-  paragraph: {
-    fontSize: 15,
-    marginBottom: -4,
-    lineHeight: 22,
-    color: "#374151",
-  },
-});

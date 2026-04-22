@@ -1,11 +1,7 @@
+import { SectionContainer } from "@/components/SectionContainer";
+import { ThemedText } from "@/components/ThemedText";
 import React, { useMemo } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
 import eventsData from "../../../lib/events.json";
 
@@ -24,8 +20,6 @@ const FALLBACK_CENTER: [number, number] = [
 const MAP_STYLE_URL = "https://tiles.openfreemap.org/styles/bright";
 
 export default function KarteScreen() {
-  const { width } = useWindowDimensions();
-  const isTablet = width >= 768;
   const maplibre =
     Platform.OS === "web"
       ? null
@@ -114,17 +108,23 @@ export default function KarteScreen() {
           </maplibre.Map>
         ) : (
           <View style={styles.webFallback}>
-            <Text style={styles.webFallbackText}>
+            <ThemedText
+              variant="body"
+              color="textSecondary"
+              style={styles.webFallbackText}
+            >
               Karte pieejama iOS/Android development build vidē.
-            </Text>
+            </ThemedText>
           </View>
         )}
       </View>
 
-      <View style={[styles.header, isTablet && styles.headerTablet]}>
-        <Text style={styles.eyebrow}>Navigācija</Text>
-        <Text style={styles.title}>Karte</Text>
-      </View>
+      <SectionContainer fromScreenTop style={styles.headerContainer}>
+        <ThemedText variant="eyebrow" color="textSecondary">
+          Navigācija
+        </ThemedText>
+        <ThemedText variant="bigTitle">Karte</ThemedText>
+      </SectionContainer>
     </View>
   );
 }
@@ -134,35 +134,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
-  header: {
+  headerContainer: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    paddingHorizontal: 24,
-    paddingTop: 72,
-    gap: 12,
     zIndex: 20,
-  },
-  headerTablet: {
-    left: "5%",
-    right: "5%",
-    width: "90%",
-    maxWidth: 1200,
-    alignSelf: "center",
-    paddingHorizontal: "10%",
-  },
-  eyebrow: {
-    fontSize: 14,
-    fontWeight: "700",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    color: "#939393",
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: "800",
-    color: "#111827",
+    borderWidth: 0,
+    marginBottom: 0,
+    backgroundColor: "transparent",
   },
   mapCard: {
     ...StyleSheet.absoluteFillObject,
@@ -180,9 +157,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   webFallbackText: {
-    fontSize: 16,
-    lineHeight: 24,
     textAlign: "center",
-    color: "#374151",
   },
 });
