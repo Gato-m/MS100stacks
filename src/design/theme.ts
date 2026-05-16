@@ -5,6 +5,7 @@ import {
   Fonts,
   Layout,
   Spacing,
+  TextVariantColors,
   TextVariants,
   ThemeColor,
 } from "./tokens";
@@ -20,6 +21,7 @@ export type Theme = {
   spacing: typeof Spacing;
   layout: typeof Layout;
   text: typeof TextVariants;
+  variantColors: typeof TextVariantColors.light;
 };
 
 export const lightTheme: Theme = {
@@ -30,6 +32,7 @@ export const lightTheme: Theme = {
   spacing: Spacing,
   layout: Layout,
   text: TextVariants,
+  variantColors: TextVariantColors.light,
 };
 
 export const darkTheme: Theme = {
@@ -40,6 +43,7 @@ export const darkTheme: Theme = {
   spacing: Spacing,
   layout: Layout,
   text: TextVariants,
+  variantColors: TextVariantColors.dark,
 };
 
 /**

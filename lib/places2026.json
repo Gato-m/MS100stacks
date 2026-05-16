@@ -1,0 +1,86 @@
+[
+  {
+    "id": "madonas-novada-biblioteka",
+    "place": "Madonas novada bibliotēka",
+    "latLong": [56.85265142119462, 26.21025162052344],
+    "img": "biblio.png"
+  },
+  {
+    "id": "estrade",
+    "place": "Estrāde",
+    "latLong": [56.848414013873615, 26.208051546883723],
+    "img": "estrade.png"
+  },
+  {
+    "id": "streetbola-laukums",
+    "place": "Streetbola laukums",
+    "latLong": [56.858532950901655, 26.22111861991799],
+    "img": "priezhubaskets.png"
+  },
+  {
+    "id": "madonas-muzejs",
+    "place": "Madonas novadpētniecības un mākslas muzejs",
+    "latLong": [56.85217323447789, 26.211508583079294],
+    "img": "izstades.png"
+  },
+  {
+    "id": "madonas-valsts-gimnazija",
+    "place": "Madonas Valsts Ģimnāzija",
+    "latLong": [56.852733602602164, 26.212802284735734],
+    "img": "gimnazija.png"
+  },
+  {
+    "id": "saieta-laukums",
+    "place": "Saieta laukums",
+    "latLong": [56.85442005136003, 26.22104651833584],
+    "img": "fest.png"
+  },
+  {
+    "id": "valmieras-skola-iela",
+    "place": "Valmieras/Skolas iela",
+    "latLong": [56.85346385073736, 26.218353580476588],
+    "img": "tirgus.png"
+  },
+  {
+    "id": "priezu-kalns",
+    "place": "Priežu kalns",
+    "latLong": [56.85813902872697, 26.219662498476893],
+    "img": "priezhukalns.png"
+  },
+  {
+    "id": "blaumana-iela",
+    "place": "Blaumaņa iela",
+    "latLong": [56.852161501421946, 26.217784952166674],
+    "img": "blaumanja.png"
+  },
+  {
+    "id": "no-saieta-laukuma",
+    "place": "No Saieta laukuma",
+    "latLong": [56.85442005136003, 26.22104651833584],
+    "img": "moto.png"
+  },
+  {
+    "id": "madona",
+    "place": "Madona",
+    "latLong": [56.85278921598789, 26.218632530207167],
+    "img": "madona-skolas.png"
+  },
+  {
+    "id": "kartinga-trase",
+    "place": "Kartinga trase",
+    "latLong": [56.865983709035326, 26.225567325212594],
+    "img": "kartingi.png"
+  },
+  {
+    "id": "pilsetvide",
+    "place": "Pilsētvide",
+    "latLong": [56.852296431609666, 26.21647603418009],
+    "img": "vides-izstades.png"
+  },
+  {
+    "id": "streetfood",
+    "place": "Streetfood",
+    "latLong": [56.854055670562865, 26.221165191172087],
+    "img": "streetfood.png"
+  }
+]

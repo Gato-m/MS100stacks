@@ -19,13 +19,14 @@ export function ThemedText({
   const { theme } = useTheme();
 
   const variantStyle = theme.text[variant];
+  const variantColor = color === "text" ? theme.variantColors[variant] : color;
 
   return (
     <Text
       {...rest}
       style={[
         {
-          color: theme.colors[color],
+          color: theme.colors[variantColor],
           fontFamily: theme.fonts.sans,
         },
         variantStyle,

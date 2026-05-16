@@ -9,6 +9,19 @@ dist/
 web-build/
 expo-env.d.ts
 
+# build
+# EAS build artifacts
+*.apk
+*.aab
+*.ipa
+build-*.apk
+build-*.aab
+build-*.ipa
+
+# Expo local build output
+dist/
+build/
+
 # Native
 .kotlin/
 *.orig.*
@@ -41,3 +54,5 @@ app-example
 # generated native folders
 /ios
 /android
+
+.env

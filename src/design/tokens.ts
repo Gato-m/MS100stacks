@@ -6,23 +6,33 @@ export const Colors = {
     text: "#000000",
     background: "#ffffff",
     backgroundElement: "#f0f0f300",
-    backgroundSelected: "#E0E1E6",
-    textSecondary: "#525252",
+    backgroundSelected: "#e2e2e200",
+    textSecondary: "#3b3b3b",
     accent: "red",
-    darkRed: "#be0a0a",
-    lightGray: "#eaeaea",
+    darkRed: "#d0311c",
+    green: "#069044",
+    blue: "#114b8e",
+    lightGray: "#dad9d9",
     white: "#ffffff",
+    darkGray: "#5e5e5e",
+    accent2: "#d0311c",
+    gradientDark: "#3a435b",
   },
   dark: {
-    text: "#ffffff",
-    background: "#000000",
-    backgroundElement: "#21222500",
-    backgroundSelected: "#2E3135",
-    textSecondary: "#525252",
-    accent: "red",
-    darkRed: "#be0a0a",
-    lightGray: "#e2e1e1",
+    text: "#262626",
+    background: "#151C28",
+    backgroundElement: "#1b1b1c00",
+    backgroundSelected: "#2e313500",
+    textSecondary: "#ecebeb",
+    accent: "#ed2727",
+    darkRed: "#d0311c",
+    green: "#069044",
+    blue: "#114b8e",
+    lightGray: "#dcdbdb",
+    darkGray: "#5e5e5e",
     white: "#ffffff",
+    accent2: "#d0311c",
+    gradientDark: "#272d3eff",
   },
 } as const;
 
@@ -65,7 +75,7 @@ export type SpacingKey = keyof typeof Spacing;
 
 export const Layout = {
   BottomTabInset: Platform.select({ ios: 50, android: 80 }) ?? 0,
-  ScreenTopToFirstComponent: Platform.select({ ios: 44, android: 44 }) ?? 24,
+  ScreenTopToFirstComponent: Platform.select({ ios: 80, android: 74 }) ?? 24,
   MaxContentWidth: 900,
 } as const;
 
@@ -78,9 +88,9 @@ export const TextVariants = {
     fontWeight: "700",
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     lineHeight: 30,
-    fontWeight: "700",
+    fontWeight: Platform.select({ ios: "600", android: "800" }) ?? "700",
   },
   eyebrow: {
     fontSize: 14,
@@ -90,17 +100,34 @@ export const TextVariants = {
     letterSpacing: 1,
   },
   subTitle: {
-    fontSize: 24,
-    lineHeight: 28,
-    fontWeight: "700",
+    fontSize: 18,
+    lineHeight: 24,
+    fontWeight: Platform.select({ ios: "600", android: "800" }) ?? "700",
     marginVertical: 5,
   },
   body: {
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 22,
-    fontWeight: "400",
     marginBottom: -3,
+    fontWeight: Platform.select({ ios: "600", android: "600" }) ?? "500",
   },
 } as const;
 
 export type TextVariantName = keyof typeof TextVariants;
+
+export const TextVariantColors = {
+  light: {
+    bigTitle: "text",
+    title: "text",
+    eyebrow: "text",
+    subTitle: "text",
+    body: "textSecondary",
+  } as Record<TextVariantName, ThemeColor>,
+  dark: {
+    bigTitle: "text",
+    title: "textSecondary",
+    eyebrow: "text",
+    subTitle: "textSecondary",
+    body: "text",
+  } as Record<TextVariantName, ThemeColor>,
+} as const;

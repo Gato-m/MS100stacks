@@ -1,0 +1,84 @@
+# dependencies
+
+node_modules/
+
+# Expo
+
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# build artifacts
+
+*.apk
+*.aab
+*.ipa
+build-*.apk
+build-*.aab
+build-*.ipa
+
+# local build outputs
+
+build/
+ios/build/
+android/build/
+android/app/build/
+
+# Xcode generated files
+
+ios/.xcode.env.local
+ios/*.xcworkspace/
+ios/**/*.xcworkspace/
+ios/**/*.xcuserdata/
+ios/**/*.pbxuser
+ios/**/*.mode1v3
+ios/**/*.mode2v3
+ios/**/*.perspectivev3
+ios/**/*.xccheckout
+ios/**/*.moved-aside
+ios/**/*.xcuserstate
+ios/DerivedData/
+ios/**/*.hmap
+
+# CocoaPods generated files
+
+ios/Pods/
+
+# Native caches and secrets
+
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+
+.metro-health-check*
+
+# debug
+
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+
+.DS_Store
+*.pem
+
+# local env files
+
+.env*.local
+
+# typescript
+
+*.tsbuildinfo
+
+# misc
+
+app-example
+MS100stacks-clean/

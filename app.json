@@ -5,27 +5,41 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "m100stacks",
-    "userInterfaceStyle": "automatic",
+
     "ios": {
-      "bundleIdentifier": "lv.stars.m100stacks"
+      "bundleIdentifier": "lv.stars.m100stacks",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized notifications.",
+        "UIBackgroundModes": ["remote-notification"],
+        "LSApplicationQueriesSchemes": ["comgooglemaps", "waze", "maps"]
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
+      "package": "lv.stars.m100stacks"
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
       "./plugins/with-maplibre",
       "expo-router",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/android-icon-monochrome.png",
+          "color": "#be0a0a"
+        }
+      ],
       [
         "expo-splash-screen",
         {

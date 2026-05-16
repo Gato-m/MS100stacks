@@ -1,0 +1,109 @@
+{
+  "no_entry_signs": [
+    {
+      "id": "sign-1",
+      "name": "Valmieras iela",
+      "coordinates": [56.8542835548558, 26.219682188892858]
+    },
+    {
+      "id": "sign-2",
+      "name": "Valmieras iela",
+      "coordinates": [56.85522213632769, 26.221288832097734]
+    },
+    {
+      "id": "sign-3",
+      "name": "Saieta laukums",
+      "coordinates": [56.8545607321466, 26.221967430980595]
+    },
+    {
+      "id": "sign-4",
+      "name": "Vaijes iela",
+      "coordinates": [56.8543642151258, 26.222739907179268]
+    },
+    // {
+    //   "id": "sign-5",
+
+    //   "coordinates": [56.85419556163568, 26.222498508367188]
+    // },
+    {
+      "id": "sign-6",
+      "name": "Tirgus iela",
+      "coordinates": [56.85339057259546, 26.221265239776468]
+    },
+    {
+      "id": "sign-7",
+      "name": "Blaumaņa iela",
+      "coordinates": [56.85359058980605, 26.22001430668069]
+    }
+  ],
+  "entry": [
+    {
+      "id": "entry-1",
+      "name": "Apmeklētāju ieeja",
+      "streetName": "Tirgus iela",
+      "coordinates": [56.85433488412646, 26.219557218324236],
+      "roadBearing": 315
+    },
+    {
+      "id": "entry-2",
+      "name": "Apmeklētāju ieeja",
+      "streetName": "Valmieras iela",
+      "coordinates": [56.8553306582918, 26.221465857893264],
+      "roadBearing": 43
+    },
+    {
+      "id": "entry-3",
+      "name": "Apmeklētāju ieeja",
+      "streetName": "Tirgus iela",
+      "coordinates": [56.85333011958539, 26.221360778788897],
+      "roadBearing": 135
+    },
+    {
+      "id": "entry-4",
+      "name": "Apmeklētāju ieeja",
+      "streetName": "Blaumaņa iela",
+      "coordinates": [56.85358819605592, 26.219993171837142],
+      "roadBearing": 222
+    }
+  ],
+
+  "wc": {
+    "id": "wc-1",
+    "name": "Labierīcības",
+    "coordinates": [56.85332148438579, 26.220988424690933]
+  },
+  "medicine": {
+    "id": "med-1",
+    "name": "Medicīnas punkts",
+    "coordinates": [56.853586936171446, 26.220352741152443]
+  },
+  "staffEntry": {
+    "id": "staff-1",
+    "name": "Vaijes iela",
+    "coordinates": [56.85432411652407, 26.222852691242273],
+    "roadBearing": 115
+  },
+  "restricted_area": {
+    "id": "area-1",
+    "name": "Satiksme aizliegta",
+    "coordinates": [
+      [56.85426624034523, 26.219687664124944],
+
+      [56.85522213632769, 26.221288832097734],
+      [56.854787102861856, 26.222284995820818],
+
+      [56.85455262215403, 26.2219868420333],
+      [56.85435833702576, 26.22273426865132],
+      [56.854188615858256, 26.222542306623737],
+
+      [56.853404762056705, 26.221214909624532],
+      [56.85288665024503, 26.22035720694812],
+
+      [56.85306531030083, 26.219961029997584],
+      [56.85330681847466, 26.220339330109045],
+
+      [56.85371294585215, 26.220218340800507],
+      [56.85330681847466, 26.220339330109045]
+    ]
+  }
+}

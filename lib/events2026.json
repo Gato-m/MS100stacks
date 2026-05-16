@@ -1,0 +1,228 @@
+[
+  {
+    "eventId": "evt-kopigais",
+    "date": "Visu nedēļu",
+    "time": "Visu nedēļu",
+    "titleBig": "Simts gadu - simts iemeslu svinēt!",
+    "title": "No 4. līdz 6. jūnijam Madonu piepildīs mūzika, māksla, sports, teātris, tirdziņi, garšu piedzīvojums, radošas aktivitātes un daudz kas cits! Iepazīsties ar pasākumu programmu, rezervē datumu un nāc svinēt kopā!",
+    "note": "Svētkus organizē Madonas novada pašvaldība. Ieeja visos pasākumos bez maksas."
+  },
+  {
+    "eventId": "evt-024",
+    "date": "Visu nedēļu",
+    "time": "Visu nedēļu",
+    "title": "Virtuālā izlaušanās spēle 'Madonas dārgumi'",
+    "place": "Bibliotēka",
+    "categorie": "bērniem",
+    "latLong": [56.85265142119462, 26.21025162052344]
+  },
+  {
+    "eventId": "evt-025",
+    "date": "Visu nedēļu",
+    "time": "Visu nedēļu",
+    "title": "Ārtelpas izstādes 'No pamatiem līdz simtgadei' un 'Bērnu zīmējumi - Madonai 100'",
+    "place": "Pilsētvide",
+    "categorie": "izstādes",
+    "latLong": [56.852296431609666, 26.21647603418009]
+  },
+  {
+    "eventId": "evt-001",
+    "date": "2026-06-04",
+    "time": "10.00-18.00",
+    "title": "Izstādes: \"Madonai 100\", \"Madonas novada iedzīvotāju 100 nozīmīgākās grāmatas\", \"Celtnes un būvplāni Madonā\", \"Simtgades Avīze\"\nZibakcijas: \"Dižošanās ar grāmatām\", \"Stikla stāsti Madonai\", \"Simts vārdi - viens dzejolis\"",
+    "place": "Bibliotēka",
+    "categorie": "izstādes",
+    "latLong": [56.85265142119462, 26.21025162052344]
+  },
+  {
+    "eventId": "evt-003",
+    "date": "2026-06-04",
+    "time": "19.00-21.00",
+    "title": "Madonas novada bērnu un jauniešu koncerts 'MANI AVOTI'",
+    "place": "Estrāde",
+    "categorie": "koncerts",
+    "latLong": [56.848414013873615, 26.208051546883723]
+  },
+
+  {
+    "eventId": "evt-004",
+    "date": "2026-06-05",
+    "time": "10.00-18.00",
+    "title": "Izstādes: \"Madonai 100\", \"Madonas novada iedzīvotāju 100 nozīmīgākās grāmatas\", \"Celtnes un būvplāni Madonā\", \"Simtgades Avīze\"\nZibakcijas: \"Dižošanās ar grāmatām\", \"Stikla stāsti Madonai\", \"Simts vārdi - viens dzejolis\"",
+    "place": "Bibliotēka",
+    "categorie": "izstādes",
+    "latLong": [56.85265142119462, 26.21025162052344]
+  },
+  {
+    "eventId": "evt-006",
+    "date": "2026-06-05",
+    "time": "13.00-21.00",
+    "title": "Ielu basketbola turnīrs 3x3",
+    "place": "Streetbola laukums",
+    "categorie": "sports",
+    "latLong": [56.858532950901655, 26.22111861991799]
+  },
+  {
+    "eventId": "evt-007",
+    "date": "2026-06-05",
+    "time": "15.00-17.00",
+    "title": "Grāmatu atvēršanas svētki: 'Madona 1926 - 2026', 'Madona toreiz un tagad. 100 fotogrāfiju stāsti'  un izstādes 'Madona | Iekšskats' atklāšana",
+    "place": "Izstāžu zāles",
+    "categorie": "izstādes",
+    "latLong": [56.85217323447789, 26.211508583079294]
+  },
+  {
+    "eventId": "evt-008",
+    "date": "2026-06-05",
+    "time": "17.00-17.50",
+    "title": "Jauktā kora 'Ikšķile' – koncerts dāvana Madonai 100. gadē no Madonas uzņēmēja",
+    "place": "Madonas ģimnāzija",
+    "categorie": "koncerts",
+    "latLong": [56.852733602602164, 26.212802284735734]
+  },
+  {
+    "eventId": "evt-009",
+    "date": "2026-06-05",
+    "time": "18.00-24.00",
+    "title": "100 garšu Streetfood",
+    "place": "Streetfood",
+    "categorie": "ēdiens",
+    "latLong": [56.85406985040924, 26.221230025366797]
+  },
+  {
+    "eventId": "evt-010",
+    "date": "2026-06-05",
+    "time": "19.00-21.00",
+    "title": "Svētku koncertprogramma 'TEV ŠODIEN - 100, MADONA'",
+    "place": "Saieta laukums",
+    "categorie": "koncerts",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+  {
+    "eventId": "evt-011",
+    "date": "2026-06-05",
+    "time": "21.15-21.45",
+    "title": "DRUMLINE LATVIA bungu šovs",
+    "place": "Saieta laukums",
+    "categorie": "koncerts",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+  {
+    "eventId": "evt-012",
+    "date": "2026-06-05",
+    "time": "22.00-24.00",
+    "title": "Zaļumballe ar Madonas pūtēju orķestri, Arni Krauzi un Rīgas cirku",
+    "place": "Saieta laukums",
+    "categorie": "koncerts",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+
+  {
+    "eventId": "evt-013",
+    "date": "2026-06-06",
+    "time": "09.00-14.00",
+    "title": "Mājražotāju un amatnieku tirdziņš",
+    "place": "Valmieras/Skolas iela",
+    "categorie": "tirgus",
+    "latLong": [56.85346385073736, 26.218353580476588]
+  },
+  {
+    "eventId": "evt-014",
+    "date": "2026-06-06",
+    "time": "10.00-18.00",
+    "title": "Izstādes: \"Madonai 100\", \"Madonas novada iedzīvotāju 100 nozīmīgākās grāmatas\", \"Celtnes un būvplāni Madonā\", \"Simtgades Avīze\"\nZibakcijas: \"Dižošanās ar grāmatām\", \"Stikla stāsti Madonai\", \"Simts vārdi - viens dzejolis\"",
+    "place": "Bibliotēka",
+    "categorie": "izstādes",
+    "latLong": [56.85265142119462, 26.21025162052344]
+  },
+  {
+    "eventId": "evt-015",
+    "date": "2026-06-06",
+    "time": "10.00-17.00",
+    "title": "Radošās darbnīcas un aktivitātes bērniem",
+    "place": "Priežu kalns",
+    "categorie": "bērniem",
+    "latLong": [56.85813902872697, 26.219662498476893]
+  },
+  {
+    "eventId": "evt-016",
+    "date": "2026-06-06",
+    "time": "10.00-19.00",
+    "title": "Latvijas čempionāts svaru stieņa spiešanā un aktivitātes iedzīvotājiem",
+    "place": "Streetbola laukums",
+    "categorie": "sports",
+    "latLong": [56.858532950901655, 26.22111861991799]
+  },
+  {
+    "eventId": "evt-017",
+    "date": "2026-06-06",
+    "time": "10.00-14.00",
+    "title": "'Simtgades brīži' teātra ainiņās un dziesmās, Deju upe un Kopienas brokastu galds 'Madona mostas svētkiem'",
+    "place": "Blaumaņa iela",
+    "categorie": "kultūra",
+    "latLong": [56.852161501421946, 26.217784952166674]
+  },
+  {
+    "eventId": "evt-018",
+    "date": "2026-06-06",
+    "time": "11.00; 13.30; 16.00",
+    "title": "Ekskursija '100 minūtes Madonā'",
+    "place": "No Saieta laukuma",
+    "categorie": "ekskursija",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+  {
+    "eventId": "evt-019",
+    "date": "2026-06-06",
+    "time": "13.30-14.30",
+    "title": "Motociklu brauciens pilsētā",
+    "place": "Madonas ielās",
+    "categorie": "moto",
+    "latLong": [56.85278921598789, 26.218632530207167]
+  },
+  {
+    "eventId": "evt-020",
+    "date": "2026-06-06",
+    "time": "14.00-02.00",
+    "title": "100 garšu Streetfood",
+    "place": "Streetfood",
+    "categorie": "ēdiens",
+    "latLong": [56.854055670562865, 26.221165191172087]
+  },
+  {
+    "eventId": "evt-021",
+    "date": "2026-06-06",
+    "time": "15.00-18.00",
+    "title": "Motokluba nodrošinātās aktivitātes",
+    "place": "Kartinga trase",
+    "categorie": "moto",
+    "latLong": [56.865983709035326, 26.225567325212594]
+  },
+  {
+    "eventId": "evt-022",
+    "date": "2026-06-06",
+    "time": "15.00-18.00",
+    "title": "Koncertprogramma un izrādes: 'Sub Scriptum', iluzionists Edžus, čelliste Erna Daugaviete, Liepājas leļļu teātra izrāde bērniem 'Lote dodas ekspedīcijā'",
+    "place": "Saieta laukums / Streetfood skatuve",
+    "categorie": "koncerts",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+  {
+    "eventId": "evt-023",
+    "date": "2026-06-06",
+    "time": "19.00-02.00",
+    "title": "Svētku koncertprogramma un ballīte: 'YŪT', 'Pienvedēja piedzīvojumi', Intars Busulis un Abonementa orķestris, Ozols, svētku uguņošana, DJ Dot",
+    "place": "Saieta laukums",
+    "categorie": "koncerts",
+    "latLong": [56.85442005136003, 26.22104651833584]
+  },
+  {
+    "eventId": "evt-024",
+    "date": "2026-06-07",
+    "time": "11.00, 14.00",
+    "title": "Ekskursija '100 minūtes Madonā'",
+    "categorie": "ekskursija",
+    "place": "No Madonas novadpētniecības un mākslas muzeja",
+    "latLong": [56.85217323447789, 26.211508583079294]
+  }
+]
