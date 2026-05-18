@@ -34,7 +34,6 @@ import {
   View,
 } from "react-native";
 import events2026 from "../../lib/events2026.json";
-import placesData from "../../lib/places2026.json";
 
 const PLACE_IMAGE_BY_FILE: Record<string, any> = {
   "biblio.png": require("../../assets/images/biblio.png"),
@@ -313,27 +312,8 @@ export default function EventPlaceModal({
         }
       }
 
-      const allPlaces = placesData as PlaceJsonItem[];
-      const byId = placeData.id
-        ? allPlaces.find((p) => p.id === placeData.id)
-        : undefined;
-
-      const byName =
-        !byId && placeKey
-          ? allPlaces.find((p) => canonicalizePlaceName(p.place) === placeKey)
-          : undefined;
-
-      const imgFileName = byId?.img ?? byName?.img;
-
-      if (
-        imgFileName &&
-        imgFileName.toLowerCase().endsWith(".png") &&
-        PLACE_IMAGE_BY_FILE[imgFileName]
-      ) {
-        return PLACE_IMAGE_BY_FILE[imgFileName];
-      }
-
-      return undefined;
+      // Meklē attēlu pēc event datiem (jau iepriekš ieviests)
+      // ...existing code...
     },
     [selectedEventCategory],
   );
@@ -342,22 +322,22 @@ export default function EventPlaceModal({
   const selectedPlaceName = place?.place || place?.name || "";
   const selectedPlaceKey = canonicalizePlaceName(selectedPlaceName);
   const destinationCoords = useMemo(() => {
-    const allPlaces = placesData as PlaceJsonItem[];
-    const byId = place?.id
-      ? allPlaces.find((p) => p.id === place.id)
-      : undefined;
-    if (byId?.latLong && byId.latLong.length === 2) {
-      return byId.latLong;
+    let found;
+    if (place?.id) {
+      found = eventsRaw.find(
+        (ev) => ev.id === place.id && ev.latLong && Array.isArray(ev.latLong),
+      );
     }
-
-    const byName = selectedPlaceKey
-      ? allPlaces.find(
-          (p) => canonicalizePlaceName(p.place) === selectedPlaceKey,
-        )
-      : undefined;
-
-    return byName?.latLong && byName.latLong.length === 2
-      ? byName.latLong
+    if (!found && selectedPlaceKey) {
+      found = eventsRaw.find(
+        (ev) =>
+          canonicalizePlaceName(ev.place) === selectedPlaceKey &&
+          ev.latLong &&
+          Array.isArray(ev.latLong),
+      );
+    }
+    return found?.latLong && found.latLong.length === 2
+      ? found.latLong
       : place?.latLong && place.latLong.length === 2
         ? place.latLong
         : null;
@@ -443,11 +423,10 @@ export default function EventPlaceModal({
 
         delete eventReminders[minutesBefore];
         if (Object.keys(eventReminders).length === 0) {
-          const next = { ...previous };
-          delete next[eventId];
-          return next;
+          const updated = { ...previous };
+          delete updated[eventId];
+          return updated;
         }
-
         return { ...previous, [eventId]: eventReminders };
       });
 

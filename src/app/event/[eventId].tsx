@@ -8,7 +8,6 @@ import { SymbolView } from "expo-symbols";
 import React, { useMemo } from "react";
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import eventsData from "../../../lib/events2026.json";
-import places2026 from "../../../lib/places2026.json";
 
 type EventItem = {
   eventId: string;
@@ -72,19 +71,17 @@ function canonicalizePlaceName(value?: string) {
 }
 
 function getPlaceImage(placeName?: string): number | null {
-  const allPlaces = places2026 as PlaceItem[];
+  // Vietas attēlu ņem no events2026.json unikālajām vietām
+  const events = eventsData as EventItem[];
   const placeKey = canonicalizePlaceName(placeName);
   if (!placeKey) return null;
-
-  const matchedPlace = allPlaces.find(
-    (item) => canonicalizePlaceName(item.place) === placeKey,
+  const matchedEvent = events.find(
+    (item) => canonicalizePlaceName(item.place) === placeKey && item.img,
   );
-  const file = matchedPlace?.img;
-
+  const file = matchedEvent?.img;
   if (!file || !file.toLowerCase().endsWith(".png")) {
     return null;
   }
-
   return PLACE_IMAGE_BY_FILE[file] ?? null;
 }
 

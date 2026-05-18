@@ -32,7 +32,7 @@ import {
 import EventPlaceModal from "@/components/EventPlaceModal";
 import Constants from "expo-constants";
 import events2026raw from "../../../lib/events2026.json";
-import placesData from "../../../lib/places2026.json";
+
 import satiksmeData from "../../../lib/satiksme.json";
 
 function buildTrafficSignPillOffsets(
@@ -386,15 +386,30 @@ export default function KarteScreen() {
   const legendSheetTranslateY = useRef(new Animated.Value(340)).current;
   const legendSheetBackdropOpacity = useRef(new Animated.Value(0)).current;
 
-  const allPlaces = placesData as {
-    id: string;
-    place: string;
-    latLong?: [number, number];
-    img?: string;
-  }[];
+  // Izveido unikālu vietu sarakstu no events2026.json
+  const allPlaces = useMemo(() => {
+    const events = events2026raw as any[];
+    const map = new Map<
+      string,
+      { id?: string; place: string; latLong?: [number, number]; img?: string }
+    >();
+    for (const ev of events) {
+      if (ev.place && ev.latLong && Array.isArray(ev.latLong)) {
+        if (!map.has(ev.place)) {
+          map.set(ev.place, {
+            id: ev.id,
+            place: ev.place,
+            latLong: ev.latLong,
+            img: ev.img,
+          });
+        }
+      }
+    }
+    return Array.from(map.values());
+  }, [events2026raw]);
 
   const placeByCanonicalName = useMemo(() => {
-    const lookup = new Map<string, (typeof allPlaces)[number]>();
+    const lookup = new Map<string, (typeof allPlaces)[0]>();
     for (const p of allPlaces) {
       lookup.set(canonicalizePlaceName(p.place), p);
     }
@@ -997,13 +1012,13 @@ export default function KarteScreen() {
     });
   }, [animateToBoundsLowered, unifiedFocusBounds]);
 
+  // Ensure currentZoomLevel is set when switching to overlays, so pills/icons always show
   useEffect(() => {
-    if (!showTrafficRestrictions && !showTerritoryData) {
+    if (showTrafficRestrictions || showTerritoryData) {
+      if (currentZoomLevel === null) setCurrentZoomLevel(14);
+      if (modeInitialZoom === null) setModeInitialZoom(14);
+    } else {
       setModeInitialZoom(null);
-      return;
-    }
-    if (modeInitialZoom === null && currentZoomLevel !== null) {
-      setModeInitialZoom(currentZoomLevel);
     }
   }, [
     showTrafficRestrictions,
@@ -1013,12 +1028,19 @@ export default function KarteScreen() {
   ]);
 
   const isDetailOverlayVisibleAtCurrentZoom = useMemo(() => {
+    // Always show overlays if switching or values are not yet set
+    if (showTrafficRestrictions || showTerritoryData) return true;
     if (modeInitialZoom === null || currentZoomLevel === null) return true;
     return (
       Math.abs(currentZoomLevel - modeInitialZoom) <=
       DETAIL_OVERLAY_ZOOM_EPSILON
     );
-  }, [currentZoomLevel, modeInitialZoom]);
+  }, [
+    currentZoomLevel,
+    modeInitialZoom,
+    showTrafficRestrictions,
+    showTerritoryData,
+  ]);
 
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);

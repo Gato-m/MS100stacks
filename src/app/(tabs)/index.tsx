@@ -29,7 +29,6 @@ import {
   View,
 } from "react-native";
 import events2026 from "../../../lib/events2026.json";
-import places2026 from "../../../lib/places2026.json";
 
 type EventItem = {
   eventId: string;
@@ -111,23 +110,31 @@ export default function ProgrammaScreen() {
       }
     }, []),
   );
-  // Merge events with coordinates from places2026.json
+  // Merge events with coordinates from events2026.json (no more places2026.json)
   const eventsRaw = events2026 as unknown as EventItem[];
-  const places = places2026 as unknown as {
-    place: string;
-    latLong: [number, number];
-  }[];
+  // Izveido map ar vietām no events2026.json
+  const placeMap = useMemo(() => {
+    const map = new Map<string, { latLong: [number, number]; img?: string }>();
+    for (const ev of eventsRaw) {
+      if (ev.place && ev.latLong && Array.isArray(ev.latLong)) {
+        if (!map.has(ev.place)) {
+          map.set(ev.place, { latLong: ev.latLong, img: (ev as any).img });
+        }
+      }
+    }
+    return map;
+  }, [eventsRaw]);
   const events: EventWithCoords[] = useMemo(
     () =>
       eventsRaw.map((event) => {
-        const found = places.find((p) => p.place === event.place);
+        const found = placeMap.get(event.place);
         return {
           ...event,
           lat: found?.latLong?.[0] ?? null,
           long: found?.latLong?.[1] ?? null,
         };
       }),
-    [eventsRaw, places],
+    [eventsRaw, placeMap],
   );
   // Separate week-long events and intro
   const visaNedelaEvents = useMemo(
